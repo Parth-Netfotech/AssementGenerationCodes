@@ -8,27 +8,52 @@ This document tracks all files created and updated during the implementation of 
 
 ## 📁 Files Created
 
-### 1. **reviewApi.js**
-**Location:** `RecruiterAdmin/api/reviewApi.js`
+### 1. **generateAssessmentApi.js**
+**Location:** `RecruiterAdmin/api/generateAssessmentApi.js`
 
-**Purpose:** API integration layer for communicating with the backend
+**Purpose:** API integration layer for question generation
 
 **Functions:**
-- `prepareFinalizePayload()` - Transforms frontend data to backend format
+- `transformToBackendPayload()` - Transforms formData to backend format for generation
+- `generateTest()` - POST request to generate questions from AI/backend
+- `transformToFrontendQuestions()` - Converts backend question format to frontend format
+- `prepareFinalizePayload()` - Prepares payload for test finalization
+
+**Key Features:**
+- Skill-based question generation
+- Question type mapping (MCQ, Coding, Video)
+- Difficulty level handling
+- Error handling and validation
+- Backend URL configuration
+
+**API Endpoint:** `/api/v1/generate-test`
+
+---
+
+### 2. **reviewApi.js**
+**Location:** `RecruiterAdmin/api/reviewApi.js`
+
+**Purpose:** API integration layer for test finalization and review
+
+**Functions:**
+- `prepareFinalizePayload()` - Transforms frontend data to backend format for finalization
 - `finalizeTest()` - POST request to save test in database
 - `getTest()` - Fetch test by question_set_id (optional)
 - `getAllTests()` - Fetch all tests (optional)
 - `deleteTest()` - Delete test by question_set_id (optional)
 
 **Key Features:**
+- Complete test finalization workflow
 - Error handling
 - Console logging for debugging
 - Proper HTTP request/response handling
 - Backend URL configuration
 
+**API Endpoint:** `/api/v1/finalize-test`
+
 ---
 
-### 2. **Review.jsx** (Optional)
+### 3. **Review.jsx** (Optional)
 **Location:** `RecruiterAdmin/Review.jsx`
 
 **Purpose:** Standalone review page component
@@ -165,6 +190,8 @@ import Review from './RecruiterAdmin/Review';
 ```
 
 **Full Route Path:** `/RecruiterAdmin-Dashboard/Review`
+
+---
 
 
 
